@@ -2,10 +2,9 @@ import streamlit as st
 import openai
 from datetime import datetime
 import os
-import pandas as pd        
+import pandas as pd    
+
 openai.api_key = os.getenv("OPENAI_API_KEY")
-# Set up OpenAI API key
-client = openai.OpenAI(api_key='openai.api_key')
 
 def get_bot_response(prompt, conversation_history):
     messages = [
@@ -14,7 +13,7 @@ def get_bot_response(prompt, conversation_history):
         {"role": "user", "content": prompt}
     ]
 
-    response = client.chat.completions.create(
+    response = openai.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=messages,
         max_tokens=500,
